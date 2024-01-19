@@ -1,0 +1,1 @@
+# nova-stripe-subscription-manager
