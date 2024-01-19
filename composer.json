@@ -1,5 +1,5 @@
 {
-  "name": "yourvendor/nova-stripe-subscription-manager",
+  "name": "deep12650/nova-stripe-subscription-manager",
   "description": "Laravel Nova Subscription Manager",
   "type": "laravel-nova",
   "keywords": [
