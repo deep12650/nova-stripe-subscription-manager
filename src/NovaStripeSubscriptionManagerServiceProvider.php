@@ -1,5 +1,3 @@
-// nova-components/nova-stripe-subscription-manager/src/NovaStripeSubscriptionManagerServiceProvider.php
-
 <?php
 
 namespace Deep12650\NovaStripeSubscriptionManager;

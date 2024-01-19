@@ -1,6 +1,5 @@
-// nova-components/nova-stripe-subscription-manager/src/UpdateSubscription.php
-
 <?php
+// nova-components/nova-stripe-subscription-manager/src/UpdateSubscription.php
 
 namespace Deep12650\NovaStripeSubscriptionManager;
 
@@ -10,13 +9,22 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Text;
 use Stripe\Subscription;
 
 class UpdateSubscription extends Action implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
-    public function handle(ActionFields $fields, $models)
+    public $withoutConfirmation = false;
+
+    /**
+     * Perform the action on the given models.
+     *
+     * @param \Laravel\Nova\Fields\ActionFields $fields
+     * @return mixed
+     */
+    public function handle(ActionFields $fields)
     {
         $subscriptionIds = $fields->subscription_ids;
 
@@ -25,9 +33,14 @@ class UpdateSubscription extends Action implements ShouldQueue
             // Implement your logic to update subscription, e.g., change plan
         }
 
-        return Action::message('Subscriptions updated successfully!');
+        return $this->message('Subscriptions updated successfully!');
     }
 
+    /**
+     * Get the fields available on the action.
+     *
+     * @return array
+     */
     public function fields()
     {
         return [

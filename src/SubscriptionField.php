@@ -1,5 +1,5 @@
-// nova-components/nova-stripe-subscription-manager/src/SubscriptionField.php
 <?php
+
 namespace Deep12650\NovaStripeSubscriptionManager;
 
 use Laravel\Nova\Fields\Field;
@@ -11,9 +11,16 @@ class SubscriptionField extends Field
 {
     public $component = 'subscription-field';
 
-    public function resolveAttribute($value, NovaRequest $request)
+    /**
+     * Resolve the given attribute from the given resource.
+     *
+     * @param mixed $resource
+     * @param string $attribute
+     * @return mixed
+     */
+    public function resolveAttribute($resource, $attribute)
     {
-        $user = $request->user();
+        $user = app(NovaRequest::class)->user();
         $stripeCustomerId = $user->stripe_customer_id;
 
         if ($stripeCustomerId) {
