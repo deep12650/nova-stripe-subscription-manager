@@ -9,18 +9,23 @@ use Stripe\Subscription;
 
 class SubscriptionField extends Field
 {
-    public $component = 'subscription-field';
+    /**
+     * The field's component.
+     *
+     * @var string
+     */
+    public $component = 'text'; // Use the 'text' component for displaying plans
 
     /**
-     * Resolve the given attribute from the given resource.
+     * Resolve the field's value.
      *
      * @param mixed $resource
-     * @param string $attribute
+     * @param mixed $attribute
      * @return mixed
      */
-    public function resolveAttribute($resource, $attribute)
+    public function resolve($resource, $attribute = null)
     {
-        $user = app(NovaRequest::class)->user();
+        $user = request()->user();
         $stripeCustomerId = $user->stripe_customer_id;
 
         if ($stripeCustomerId) {
@@ -33,9 +38,16 @@ class SubscriptionField extends Field
             // Now, you can use the Stripe API to retrieve subscriptions
             $subscriptions = Subscription::all(['customer' => $stripeCustomerId]);
 
-            return $subscriptions;
-        }
+            // Extract and display the plans
+            $plans = [];
 
-        return null;
+            foreach ($subscriptions as $subscription) {
+                foreach ($subscription->items->data as $item) {
+                    $plans[] = $item->plan->nickname;
+                }
+            }
+
+            $this->value = implode(', ', array_unique($plans));
+        }
     }
 }

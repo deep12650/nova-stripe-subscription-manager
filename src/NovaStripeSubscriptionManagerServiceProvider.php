@@ -11,8 +11,8 @@ class NovaStripeSubscriptionManagerServiceProvider extends ServiceProvider
     public function boot()
     {
         Nova::serving(function (ServingNova $event) {
-            Nova::cards([
-                SubscriptionManagerCard::make(),
+            Nova::tools([
+                new SubscriptionManagerCard,
             ]);
 
             Nova::fields([
