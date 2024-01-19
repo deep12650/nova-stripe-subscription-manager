@@ -1,0 +1,42 @@
+{
+  "name": "yourvendor/nova-stripe-subscription-manager",
+  "description": "Laravel Nova Subscription Manager",
+  "type": "laravel-nova",
+  "keywords": [
+    "laravel",
+    "nova",
+    "tool",
+    "stripe",
+    "subscription",
+    "manager"
+  ],
+  "authors": [
+    {
+      "name": "Deep Swaroop Sachan",
+      "email": "deep@deepswaroopsachan.com",
+      "homepage": "https://deepswaroopsachan.com",
+      "role": "Developer"
+    }
+  ],
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.4|^8.0",
+    "illuminate/http": "^8.0|^9.0",
+    "illuminate/support": "^8.0|^9.0",
+    "laravel/nova": "^4.0",
+    "stripe/stripe-php": "^7.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Deep12650\\NovaStripeSubscriptionManager\\NovaStripeSubscriptionManagerServiceProvider"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+        "Deep12650\\NovaStripeSubscriptionManager\\": "src/"
+    }
+  }
+}
